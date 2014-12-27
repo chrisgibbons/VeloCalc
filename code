@@ -1,0 +1,97 @@
+velogear <- function(ring,sprocket){
+  inches <- 27*ring/sprocket
+  titlegear <- "Your gear inches are"
+  print(titlegear, quote=FALSE)
+  show(inches)
+}
+
+velospeed <- function(ring,sprocket,cadence){
+  inches <- 26.8*ring/sprocket
+  onerevmm <- (27*25.40)*3.1415
+  onerevkm <- onerevmm*10e-7
+  gain <- ring/sprocket
+  rearwheeldev <- onerevkm*gain
+  speed <- cadence*rearwheeldev
+  kmph <- speed*60
+  kmps <- kmph/3600
+  mps <- kmps*1000
+  time200 <- 200/mps
+  time250 <- 250/mps
+  title200 <- "Your time for a flying 200m would be"
+  titlegear <- "Your gear inches are"
+  titlespeed <- "Your speed in KM/H would be"
+  title250 <- "Your time for a 250m lap would be"
+    if(time200<=9.38){
+      y <- "WORLD RECORD!"
+    }
+  print(titlegear, quote=FALSE)
+  show(inches)
+  print(titlespeed, quote=FALSE)
+  show(kmph)
+  print(title200, quote=FALSE)
+  show(time200)
+  print(y, quote=FALSE)
+  print(title250, quote=FALSE)
+  show(time250)
+
+}
+
+velo200 <- function(ring,sprocket,time200){
+    distance <- 200
+    mps <- 200/time200
+    kmps <- mps/1000
+    speed <- kmps*3600
+    titlespeed <- "Your speed in KM/H would be"
+    timefraction <-60/time200
+    onerevm <- (27*.02540)*3.1415
+    totalrevs <- 200/onerevm
+    ratio <- ring/sprocket
+    crankrevs <- totalrevs/ratio
+    cadences <- 60/time200
+    cadence <- cadences*crankrevs
+      titlecadence <- "Your cadence would be"
+        print(titlecadence, quote=FALSE)
+  show(cadence)
+}
+
+## Need to learn to constrain unreasonable values 
+
+what200gear <- function(time200,cadence){
+    distance <- 200
+    mps <- 200/time200
+    kmps <- mps/1000
+    speed <- kmps*3600
+    titlespeed <- "Your speed in KM/H would be"
+    timefraction <-60/time200
+    rollout <- (26.769*.02540)*3.1415
+    totalrevs <- 200/rollout
+    crankrevs <- (cadence*11.3)/60
+    ratio <- totalrevs/crankrevs
+    r12 <-  round(12*ratio)
+    r13 <-  round(13*ratio)
+    r14 <-  round(14*ratio)
+    r15 <-  round(15*ratio)
+    r16 <-  round(16*ratio)
+    r17 <-  round(17*ratio)
+    r18 <-  round(18*ratio)
+    titlesprocket <- "The ideal gear inches for this ride will be"
+    sprocket <- c(r12,r13,r14,r15,r15,r16,r17)
+    a48 <- (r12*26.769)/12
+    a49 <- (r13*26.769)/13
+    a50 <- (r14*26.769)/14
+    a51 <- (r15*26.769)/15
+    a52 <- (r16*26.769)/16
+    a53 <- (r17*26.769)/17
+    a54 <- (r18*26.769)/18
+    ring <- c(12,13,14,15,16,17,18)
+    actual.gear.inches <- c(a48,a49,a50,a51,a52,a54,a54)
+    table <- data.frame(sprocket, ring, actual.gear.inches)
+    titleinches <- "The ideal gear inches for this ride will be"
+    print(titleinches, quote=FALSE)
+    gearinches <- ratio*27
+    print (gearinches, quote=FALSE)
+    titletable <- "Here are some example gearings"
+    print(titletable, quote=FALSE)
+    print(table)
+}
+  
